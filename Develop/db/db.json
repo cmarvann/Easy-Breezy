@@ -1,0 +1,30 @@
+{
+  "notetaker": [
+    {
+        "title":"Bank",
+        "text":"Call bank on Friday",
+        "id": "1"
+    },
+    {
+        "title": "Delivery",
+        "text":"Reschedule delivery",
+        "id": "2"
+    },
+    {
+        "title": "Payroll",
+        "text":"Finish payroll",
+        "id": "3"
+    },
+    {
+        "title": "Clients",
+        "text":"Check in with clients",
+        "id": "4"
+    },
+    {
+        "title": "Lunch",
+        "text":"Client lunch on Thursday",
+        "id": "5"
+    }
+  ]
+}
+
