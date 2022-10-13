@@ -1,28 +1,27 @@
 const router = require('express').Router();
-const store = require('../db/store');
+const storeDBHelper = require('../db/storeDBHelper');
 
-// GET "/api/notes" responds with all notes from the database
+// GET - fetch all notes from DB
 router.get('/notes', (req, res) => {
-  store
-    .getNotes()
-    .then((notes) => {
-      return res.json(notes);
-    })
-    .catch((err) => res.status(500).json(err));
+  const allNotes = storeDBHelper.fetchNotes();
+  console.log('allnotes route', allNotes)
+  res.json(allNotes);
 });
 
+// POST - save note to DB
 router.post('/notes', (req, res) => {
-  store
-    .addNote(req.body)
-    .then((note) => res.json(note))
-    .catch((err) => res.status(500).json(err));
+  const noteData = req.body;
+  storeDBHelper.saveNote(noteData);
+  res.json(200);
 });
 
-// DELETE "/api/notes" deletes the note with an id equal to req.params.id
+// DELETE - delete note with given ID
 router.delete('/notes/:id', (req, res) => {
-  store
-    .removeNote(req.params.id)
-    .then(() => res.json({ ok: true }))
+  // get ID from request parameters
+  const IDOfNoteToDelete = req.params.id;
+  storeDBHelper
+    .deleteNote(IDOfNoteToDelete)
+    .then(() => res.status(200))
     .catch((err) => res.status(500).json(err));
 });
 
